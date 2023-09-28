@@ -1,1 +1,46 @@
-<h1>顧客一覧</h1>
+<div class="container">
+  <div class="row m-3">
+    <div class="col offset-md-2">
+      <h4>会員一覧</h4>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customer.each do |customer| %>
+      <tr>
+        <td><%= customer.id %></td>
+        <td><%= link_to admin_customer_path(customer.id) do %>
+          <%= customer.first_name %> <%= customer.last_name %>
+          <% end %>
+        </td>
+        <td><%= customer.email %></td>
+        <td>
+          <% if customer.is_deleted == false %>
+            <span>
+              <p>有効</p>
+            </span>
+          <% elsif%>
+            <span>
+              <p>退会</p>
+            </span>          
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="mx-auto">
+      <%= paginate @customer%>
+    </div>
+  </div>
+</div>

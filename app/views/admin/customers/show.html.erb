@@ -1,1 +1,66 @@
-<h1>顧客詳細</h1>
+<div class="container">
+  <div class="row m-3">
+    <div class="col offset-md-2">
+      <h4><%= @customer.first_name %><%= @customer.last_name %>さんの会員詳細</h4>
+    </div>
+  </div>
+
+  <table class="table table-borderless">
+    <tr>
+      <th>会員ID</th>
+      <td><%= @customer.id %></td>
+    </tr>
+    <tr>
+      <th>氏名</th>
+      <td><%= @customer.first_name %></td>
+      <td><%= @customer.last_name %></td>
+    </tr>
+    <tr>
+      <th>フリガナ</th>
+      <td><%= @customer.first_name_kana %></td>
+      <td><%= @customer.last_name_kana %></td>
+    </tr>
+    <tr>
+      <th>郵便番号</th>
+      <td><%= @customer.postal_code %></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+      <td><%= @customer.telephone_number %></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td><%= @customer.email %></td>
+    </tr>
+    <tr>
+      <th>会員ステータス</th>
+      <td>
+        <% if @customer.is_deleted %>
+          <span>
+            <p>退会</p>
+          </span>
+        <% elsif %>
+          <span>
+            <p>有効</p>
+          </span>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+  <div class="row justify-content-md-center">
+    <div class="col-2">
+      <%= link_to edit_admin_customer_path(@customer.id) do %>
+        <button type="button" class="btn btn-success">編集</button>
+      <% end %>
+    </div>
+    <div class="col-3">
+      <%= link_to admin_path do %>
+        <button type="button" class="btn btn-primary">注文履歴一覧を見る</button>
+      <% end %>
+    </div>
+  </div>
+</div>
